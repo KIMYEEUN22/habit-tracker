@@ -5,7 +5,7 @@ class Header extends Component {
     return (
       <header className="header">
         <span className="header-text">🌿 Habit Tracker</span>
-        <span className="header-count">{this.props.count}</span>
+        <span className="header-count">{this.props.totalCount}</span>
       </header>
     );
   }

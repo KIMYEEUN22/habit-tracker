@@ -33,15 +33,19 @@ class App extends Component {
     this.setState({ habits });
   };
 
-  handleAddHabit = (habit) => {
-    const habits = [...this.state.habits];
-    habits.push({ id: habits.length + 1, name: habit, count: 0 });
+  handleAdd = (habit) => {
+    const habits = [
+      ...this.state.habits,
+      { id: Date.now(), name: habit, count: 0 },
+    ];
     this.setState({ habits });
   };
 
   handleReset = () => {
-    const habits = [...this.state.habits];
-    habits.map((item) => (item.count = 0));
+    const habits = this.state.habits.map((item) => {
+      item.count = 0;
+      return item;
+    });
     this.setState({ habits });
   };
 
@@ -49,9 +53,9 @@ class App extends Component {
     return (
       <>
         <Header
-          count={this.state.habits.filter((item) => item.count > 0).length}
+          totalCount={this.state.habits.filter((item) => item.count > 0).length}
         />
-        <HabitAdd onAdd={this.handleAddHabit} />
+        <HabitAdd onAdd={this.handleAdd} />
         <Habits
           habits={this.state.habits}
           onIncrement={this.handleIncrement}
